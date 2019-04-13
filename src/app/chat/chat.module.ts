@@ -18,4 +18,5 @@ import { FormsModule } from '@angular/forms';
   exports: [ ChatDialogComponent ],
   providers: [ChatService]
 })
+
 export class ChatModule { }

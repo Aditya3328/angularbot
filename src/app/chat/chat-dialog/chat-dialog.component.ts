@@ -7,7 +7,7 @@ import 'rxjs/add/operator/scan';
 @Component({
   selector: 'chat-dialog',
   templateUrl: './chat-dialog.component.html',
-  styleUrls: ['./chat-dialog.component.scss']
+  styleUrls: ['./chat-dialog.component.css']
 })
 export class ChatDialogComponent implements OnInit {
 
@@ -20,11 +20,17 @@ export class ChatDialogComponent implements OnInit {
     // appends to array after each new message is added to feedSource
     this.messages = this.chat.conversation.asObservable()
         .scan((acc, val) => acc.concat(val) );
+        let chat = document.getElementById('chat-div');
+        chat.onscroll = function(){ chat.scrollTop = chat.scrollHeight; } ;
+
   }
 
   sendMessage() {
-    this.chat.converse(this.formValue);
-    this.formValue = '';
+    if ( this.formValue !== undefined && this.formValue !== '') {
+      this.chat.converse(this.formValue);
+      this.formValue = '';
+
+    }
   }
 
 }

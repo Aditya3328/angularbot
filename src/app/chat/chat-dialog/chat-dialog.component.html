@@ -1,21 +1,26 @@
-<h1>Angular Bot</h1>
 
+<section class="ftco-section services-section bg-light" >
+  <div class="container" >
+    <div class="row d-flex" >
+      <div class="column">
+        <h5 style="margin-top:-3%"> Ask Questions Related to banking.I will feel very good if I solve your doubts.</h5>
+        <div id="chat-div">
+        <ng-container *ngFor="let message of messages | async">
 
+          <div class="message" [ngClass]="{ 'from': message.sentBy === 'bot',
+                                            'to':   message.sentBy === 'user' }">
+            {{ message.content }}
+          </div>
 
-<ng-container *ngFor="let message of messages | async">
-
-  <div class="message" [ngClass]="{ 'from': message.sentBy === 'bot',
-                                    'to':   message.sentBy === 'user' }">
-    {{ message.content }}
+        </ng-container>
+        </div>
+        
+        <div id="ask-div">
+          <input [(ngModel)]="formValue" class="input" (keyup.enter)="sendMessage()" type="text">
+          <button (click)="sendMessage()" class="btn">Send</button>
+        </div>
+      
+      </div>
+    </div>
   </div>
-
-</ng-container>
-
-
-<label for="nameField">Your Message</label>
-
-
-<input [(ngModel)]="formValue" (keyup.enter)="sendMessage()" type="text"><br>
-
-<button (click)="sendMessage()">Send</button>
-
+</section>
